@@ -146,6 +146,7 @@ public class HUDPrincipal : MonoBehaviour
                 Debug.LogWarning("Ponto de interesse nao encontrado: " + nomePI);
             }
         }
+
     }
 
     /// <summary>
@@ -162,7 +163,9 @@ public class HUDPrincipal : MonoBehaviour
         else
         {
             // Log de erro se o PontoDeFoco nao foi atribuido
-            Debug.LogError("PontoDeFoco nao atribuido no Inspector!");
+            Debug.Log("PontoDeFoco nao atribuido no Inspector!");
+            GameObject foco = GameObject.Find("PontoDeFoco");
+            pontoDeFoco = foco;
         }
     }
 

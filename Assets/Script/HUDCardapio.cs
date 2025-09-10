@@ -11,17 +11,17 @@ public class HUDCardapio : MonoBehaviour
     /// <summary>
     /// Botão para iniciar um novo jogo.
     /// </summary>
-    public Button botaoNovoJogo;
+    [SerializeField] public Button botaoNovoJogo;
 
     /// <summary>
     /// Botão para carregar um jogo existente.
     /// </summary>
-    public Button botaoCarregarJogo;
+    [SerializeField] public Button botaoCarregarJogo;
 
     /// <summary>
     /// Botão para sair do jogo.
     /// </summary>
-    public Button botaoSair;
+    [SerializeField] public Button botaoSair;
 
     /// <summary>
     /// Método chamado na inicialização do script.
@@ -48,7 +48,7 @@ public class HUDCardapio : MonoBehaviour
         BancoDeDados.Inicializar();
 
         // Carrega a cena chamada "CardapioNovoJogo"
-        SceneManager.LoadScene("CardapioNovoJogo");
+        SceneManager.LoadScene("mapaPrincipal");
     }
 
     /// <summary>
@@ -66,13 +66,12 @@ public class HUDCardapio : MonoBehaviour
     /// </summary>
     private void AoClicarSair()
     {
-        // Verifica se está executando no Editor da Unity
-#if UNITY_EDITOR
+        // Fecha a aplicação em builds finais
+        Application.Quit();
+
+#if UNITY_EDITOR // Verifica se está executando no Editor da Unity
         // Desativa o modo de play no Editor
         UnityEditor.EditorApplication.isPlaying = false;
-#else
-            // Fecha a aplicação em builds finais
-            Application.Quit();
 #endif
     }
 }
