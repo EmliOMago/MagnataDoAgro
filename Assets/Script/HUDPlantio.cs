@@ -93,7 +93,7 @@ public class HUDPlantio : MonoBehaviour
     }
     
     // Busca a imagem do nivel da construcao de plantio pelo nome
-    Transform nivelTransform = transform.Find("ImagemNivelPlantio");
+    Transform nivelTransform = transform.Find("Img_Const_Plantio");
     if (nivelTransform != null)
     {
         imagemNivelPlantio = nivelTransform.GetComponent<Image>();
@@ -226,7 +226,7 @@ private int ContarReferenciasValidas(Component[] array)
             // Atualiza a variavel do animador para mostrar a animacao correta
             if (animadorPlantio != null)
             {
-                animadorPlantio.SetInteger("EstadoMenu", 1);
+                animadorPlantio.SetInteger("EstadoPlantio", 1);
             }
         }
     }
