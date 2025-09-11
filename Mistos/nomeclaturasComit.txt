@@ -1,9 +1,3 @@
-﻿:heavy_plus_sign: Att:  
-:heavy_check_mark: feat: 
-:arrow_up: att: 
-:sparkles: feat (novo)
-:wrench:  att:
-
 Padrões de emojis 💈
 Tipo do commit	Emoji	Palavra-chave
 Acessibilidade				♿ :wheelchair:	
@@ -16,7 +10,7 @@ Animações e transições			💫 :dizzy:
 Bugfix					🐛 :bug:		fix
 Comentários				💡 :bulb:		docs
 Commit inicial				🎉 :tada:		init
-Configuração				🔧 :wrench:		chore
+Configuração ou modificação simples	🔧 :wrench:
 Deploy					🚀 :rocket:	
 Documentação				📚 :books:		docs
 Em progresso				🚧 :construction:	
