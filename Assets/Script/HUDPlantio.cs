@@ -49,6 +49,9 @@ public class HUDPlantio : MonoBehaviour
     /// </summary>
     void Start()
     {
+        // Busca automaticamente todas as referencias aos GameObjects
+        BuscarReferenciasAutomaticamente();
+    
         // Garante que o menu de selecao de plantio esta oculto no inicio
         if (hudSelecionarPlantio != null)
         {
@@ -76,6 +79,70 @@ public class HUDPlantio : MonoBehaviour
             }
         }
     }
+
+    private void BuscarReferenciasAutomaticamente()
+{
+    // Busca o componente Animator no proprio objeto ou em seus filhos
+    animadorPlantio = GetComponentInChildren<Animator>();
+    
+    // Busca o menu de selecao de plantio pelo nome entre os filhos
+    Transform menuSelecao = transform.Find("hud_SelecionarPlantio");
+    if (menuSelecao != null)
+    {
+        hudSelecionarPlantio = menuSelecao.gameObject;
+    }
+    
+    // Busca a imagem do nivel da construcao de plantio pelo nome
+    Transform nivelTransform = transform.Find("ImagemNivelPlantio");
+    if (nivelTransform != null)
+    {
+        imagemNivelPlantio = nivelTransform.GetComponent<Image>();
+    }
+    
+    // Inicializa o array de imagens das areas de plantio
+    imagensAreasPlantio = new Image[4];
+    
+    // Busca as imagens das areas de plantio pelos nomes padrao
+    for (int i = 0; i < 4; i++)
+    {
+        string nomeArea = "B_AreaDePlantio" + (i + 1);
+        Transform areaTransform = transform.Find(nomeArea);
+        
+        if (areaTransform != null)
+        {
+            // Busca a imagem filha do botao (que mostra o que esta plantado)
+            Transform imagemTransform = areaTransform.Find("Image");
+            if (imagemTransform != null)
+            {
+                imagensAreasPlantio[i] = imagemTransform.GetComponent<Image>();
+            }
+        }
+    }
+    
+    // Log para debug - verifica se todas as referencias foram encontradas
+    Debug.Log("Referencias automaticas configuradas: " +
+             "Animator=" + (animadorPlantio != null) + ", " +
+             "MenuSelecao=" + (hudSelecionarPlantio != null) + ", " +
+             "ImagemNivel=" + (imagemNivelPlantio != null) + ", " +
+             "AreasPlantio=" + ContarReferenciasValidas(imagensAreasPlantio) + "/4");
+}
+
+/// <summary>
+/// Conta quantas referencias validas existem em um array de componentes.
+/// </summary>
+/// <param name="array">Array de componentes a ser verificado.</param>
+/// <returns>Quantidade de referencias nao nulas no array.</returns>
+private int ContarReferenciasValidas(Component[] array)
+{
+    int count = 0;
+    foreach (Component comp in array)
+    {
+        if (comp != null) count++;
+    }
+    return count;
+}
+
+
     
     /// <summary>
     /// Atualiza toda a interface de usuario com os dados atuais do banco de dados.
