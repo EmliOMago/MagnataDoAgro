@@ -1,10 +1,10 @@
-using UnityEngine;
+guidorusing UnityEngine;
 
 /// <summary>
 /// Script responsavel por controlar o comportamento da camera principal em um ambiente 3D.
 /// Segue um alvo (player) com suavidade e permite definir limites de movimento para a camera.
 /// </summary>
-public class HUDConstrucao : MonoBehaviour
+public class Seguidor : MonoBehaviour
 {
     /// <summary>
     /// Referencia para o transform do alvo que a camera deve seguir.
@@ -34,37 +34,37 @@ public class HUDConstrucao : MonoBehaviour
     /// Flag que indica se os limites de movimento da camera devem ser aplicados.
     /// Quando verdadeiro, a camera nao ultrapassara os limites definidos.
     /// </summary>
-    public bool usarLimites = false;
+    public bool usarLimites = true;
     
     /// <summary>
     /// Valor minimo permitido para a coordenada X da camera no mundo 3D.
     /// </summary>
-    public float minX = -10f;
+    public float minX = -100f;
     
     /// <summary>
     /// Valor maximo permitido para a coordenada X da camera no mundo 3D.
     /// </summary>
-    public float maxX = 10f;
+    public float maxX = 100f;
     
     /// <summary>
     /// Valor minimo permitido para a coordenada Y da camera no mundo 3D.
     /// </summary>
-    public float minY = 2f;
+    public float minY = -150f;
     
     /// <summary>
     /// Valor maximo permitido para a coordenada Y da camera no mundo 3D.
     /// </summary>
-    public float maxY = 15f;
+    public float maxY = 1f;
     
     /// <summary>
     /// Valor minimo permitido para a coordenada Z da camera no mundo 3D.
     /// </summary>
-    public float minZ = -20f;
+    public float minZ = -1f;
     
     /// <summary>
     /// Valor maximo permitido para a coordenada Z da camera no mundo 3D.
     /// </summary>
-    public float maxZ = -5f;
+    public float maxZ = 300f;
     
     /// <summary>
     /// Metodo chamado uma unica vez antes da primeira execucao do Update.
@@ -75,6 +75,10 @@ public class HUDConstrucao : MonoBehaviour
         // Busca automaticamente o objeto com a tag "Player" na cena
         // e armazena sua referencia de transform para seguir
         alvo = GameObject.FindWithTag("Player").transform;
+        if(alvo = null)
+            {
+                alvo = GameObject.Find("PontoDeFoco").transform;
+            }
     }
     
     /// <summary>
