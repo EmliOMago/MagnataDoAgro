@@ -1,4 +1,5 @@
-guidorusing UnityEngine;
+
+using UnityEngine;
 
 /// <summary>
 /// Script responsavel por controlar o comportamento da camera principal em um ambiente 3D.
